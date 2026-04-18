@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/((?!assets|Pacific_Ndahiro\\.pdf|favicon\\.svg|placeholder\\.svg|robots\\.txt).*)", "destination": "/index.html" }
+  ]
+}
