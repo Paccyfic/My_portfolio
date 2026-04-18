@@ -58,7 +58,7 @@ export const Contact = () => {
           </Button>
           <div className="flex gap-3">
             <a
-              href="https://github.com"
+              href="https://github.com/Paccyfic"
               target="_blank"
               rel="noreferrer"
               className="p-3 rounded-full border border-border bg-card/50 hover:border-primary hover:text-primary transition-smooth"
@@ -67,7 +67,7 @@ export const Contact = () => {
               <Github size={18} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/ndahiropacific"
               target="_blank"
               rel="noreferrer"
               className="p-3 rounded-full border border-border bg-card/50 hover:border-primary hover:text-primary transition-smooth"
@@ -76,7 +76,7 @@ export const Contact = () => {
               <Linkedin size={18} />
             </a>
             <a
-              href="https://www.ndahiropacific.dev"
+              href="https://www.ndahiropacific.vercel.app"
               target="_blank"
               rel="noreferrer"
               className="p-3 rounded-full border border-border bg-card/50 hover:border-primary hover:text-primary transition-smooth"
