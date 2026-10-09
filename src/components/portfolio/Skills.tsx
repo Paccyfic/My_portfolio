@@ -1,31 +1,8 @@
-const skillGroups = [
-  {
-    title: "Languages",
-    items: ["JavaScript", "TypeScript", "Dart", "Python", "Kotlin", "Java", "C++"],
-  },
-  {
-    title: "Frontend & Mobile",
-    items: ["React", "React Native", "Flutter", "Next.js", "Tailwind CSS", "HTML5", "CSS3"],
-  },
-  {
-    title: "Backend & APIs",
-    items: ["Node.js", "Django", "GraphQL", "REST", "Laravel", "Microservices"],
-  },
-  {
-    title: "Databases",
-    items: ["PostgreSQL", "MongoDB", "PL/SQL", "Database Design"],
-  },
-  {
-    title: "DevOps & Cloud",
-    items: ["Git", "Docker", "CI/CD", "AWS", "GCP", "Agile/Scrum"],
-  },
-  {
-    title: "Tools & Practices",
-    items: ["Cursor", "Copilot", "Unit Testing", "Code Reviews", "GDPR"],
-  },
-];
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 export const Skills = () => {
+  const { skills: skillGroups } = useSiteContent();
+
   return (
     <section id="skills" className="py-24 bg-gradient-subtle relative">
       <div className="container mx-auto px-6 max-w-6xl">
