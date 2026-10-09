@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { LogOut, Inbox, RefreshCw, Mail, Clock, User } from "lucide-react";
+import { Inbox, RefreshCw, Mail, Clock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -12,11 +12,7 @@ interface ContactMessage {
   created_at: string;
 }
 
-interface AdminInboxProps {
-  onLogout: () => void;
-}
-
-export const AdminInbox = ({ onLogout }: AdminInboxProps) => {
+export const AdminInbox = () => {
   const { toast } = useToast();
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
@@ -47,11 +43,6 @@ export const AdminInbox = ({ onLogout }: AdminInboxProps) => {
     fetchMessages();
   }, []);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    onLogout();
-  };
-
   const selectedMessage = messages.find((m) => m.id === selectedId);
 
   const formatDate = (iso: string) => {
@@ -66,42 +57,23 @@ export const AdminInbox = ({ onLogout }: AdminInboxProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-lg sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <a href="/" className="text-lg font-bold tracking-tight">
-              <span className="text-gradient">Pacific</span>
-              <span className="text-foreground">.dev</span>
-            </a>
-            <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">
-              Admin
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={fetchMessages}
-              disabled={loading}
-            >
-              <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
-            </Button>
-            <Button variant="ghost" size="sm" onClick={handleLogout}>
-              <LogOut className="h-4 w-4 mr-1" /> Sign out
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      <div className="container mx-auto px-6 py-8 max-w-6xl">
+    <div>
+      <div>
         <div className="flex items-center gap-3 mb-6">
           <Inbox className="text-primary" size={24} />
           <h1 className="text-2xl font-bold">Messages</h1>
           <span className="text-sm text-muted-foreground">
             ({messages.length} total)
           </span>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="ml-auto"
+            onClick={fetchMessages}
+            disabled={loading}
+          >
+            <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+          </Button>
         </div>
 
         {loading && messages.length === 0 ? (
