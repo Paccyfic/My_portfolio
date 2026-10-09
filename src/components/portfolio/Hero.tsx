@@ -2,9 +2,11 @@ import { useState } from "react";
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactDialog } from "@/components/portfolio/ContactDialog";
+import { useSiteContent } from "@/hooks/useSiteContent";
 import heroBg from "@/assets/hero-bg.jpg";
 
 export const Hero = () => {
+  const { profile } = useSiteContent();
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
@@ -24,24 +26,24 @@ export const Hero = () => {
       <div className="absolute inset-0 -z-10 bg-background/60" />
 
       <div className="container mx-auto px-6 text-center max-w-4xl">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-border bg-card/50 backdrop-blur-sm">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </span>
-          <span className="text-xs text-muted-foreground">Available for new opportunities</span>
-        </div>
+        {profile.showAvailability && (
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-border bg-card/50 backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            <span className="text-xs text-muted-foreground">{profile.availability}</span>
+          </div>
+        )}
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.05]">
-          Hi, I'm <span className="text-gradient">Pacific Ndahiro</span>
+          Hi, I'm <span className="text-gradient">{profile.name}</span>
           <br />
-          <span className="text-foreground">Software Engineer</span>
+          <span className="text-foreground">{profile.title}</span>
         </h1>
 
         <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          5+ years designing, building, and shipping production-grade web and mobile
-          applications with React, React Native, Flutter, and Node.js. Clean code,
-          scalable architecture, real impact.
+          {profile.heroText}
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -66,7 +68,7 @@ export const Hero = () => {
 
         <div className="flex items-center justify-center gap-5">
           <a
-            href="https://github.com"
+            href={profile.github}
             target="_blank"
             rel="noreferrer"
             className="p-3 rounded-full border border-border bg-card/50 hover:border-primary hover:text-primary transition-smooth"
@@ -75,7 +77,7 @@ export const Hero = () => {
             <Github size={18} />
           </a>
           <a
-            href="https://linkedin.com"
+            href={profile.linkedin}
             target="_blank"
             rel="noreferrer"
             className="p-3 rounded-full border border-border bg-card/50 hover:border-primary hover:text-primary transition-smooth"
@@ -84,7 +86,7 @@ export const Hero = () => {
             <Linkedin size={18} />
           </a>
           <a
-            href="mailto:ndahiropacific@gmail.com"
+            href={`mailto:${profile.email}`}
             className="p-3 rounded-full border border-border bg-card/50 hover:border-primary hover:text-primary transition-smooth"
             aria-label="Email"
           >
