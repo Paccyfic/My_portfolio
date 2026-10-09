@@ -4,7 +4,7 @@ import { defaultContent, type ContentKey, type SiteContent } from "@/lib/content
 
 export const SITE_CONTENT_QUERY_KEY = ["site-content"];
 
-const fetchSiteContent = async (): Promise<SiteContent> => {
+export const fetchSiteContent = async (): Promise<SiteContent> => {
   const { data, error } = await supabase.from("portfolio_content").select("key, value");
   if (error || !data) return defaultContent;
 
