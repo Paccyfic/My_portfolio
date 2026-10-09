@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Mail, MapPin, Phone, Github, Linkedin, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSiteContent } from "@/hooks/useSiteContent";
 import { ContactDialog } from "@/components/portfolio/ContactDialog";
 
 export const Contact = () => {
+  const { profile } = useSiteContent();
   const [open, setOpen] = useState(false);
 
   return (
@@ -24,27 +26,27 @@ export const Contact = () => {
 
         <div className="grid md:grid-cols-3 gap-4 mb-10">
           <a
-            href="mailto:ndahiropacific@gmail.com"
+            href={`mailto:${profile.email}`}
             className="p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-smooth text-center shadow-card"
           >
             <Mail className="mx-auto mb-3 text-primary" size={22} />
             <div className="text-xs text-muted-foreground mb-1">Email</div>
             <div className="text-sm font-medium text-foreground break-all">
-              ndahiropacific@gmail.com
+              {profile.email}
             </div>
           </a>
           <a
-            href="tel:+14029041136"
+            href={`tel:${profile.phoneHref}`}
             className="p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-smooth text-center shadow-card"
           >
             <Phone className="mx-auto mb-3 text-primary" size={22} />
             <div className="text-xs text-muted-foreground mb-1">Phone</div>
-            <div className="text-sm font-medium text-foreground">+1 (402) 904-1136</div>
+            <div className="text-sm font-medium text-foreground">{profile.phone}</div>
           </a>
           <div className="p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm text-center shadow-card">
             <MapPin className="mx-auto mb-3 text-primary" size={22} />
             <div className="text-xs text-muted-foreground mb-1">Location</div>
-            <div className="text-sm font-medium text-foreground">Oshawa, ON, Canada</div>
+            <div className="text-sm font-medium text-foreground">{profile.location}</div>
           </div>
         </div>
 
@@ -58,7 +60,7 @@ export const Contact = () => {
           </Button>
           <div className="flex gap-3">
             <a
-              href="https://github.com/Paccyfic"
+              href={profile.github}
               target="_blank"
               rel="noreferrer"
               className="p-3 rounded-full border border-border bg-card/50 hover:border-primary hover:text-primary transition-smooth"
@@ -67,7 +69,7 @@ export const Contact = () => {
               <Github size={18} />
             </a>
             <a
-              href="https://linkedin.com/in/ndahiropacific"
+              href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
               className="p-3 rounded-full border border-border bg-card/50 hover:border-primary hover:text-primary transition-smooth"
@@ -76,7 +78,7 @@ export const Contact = () => {
               <Linkedin size={18} />
             </a>
             <a
-              href="https://www.ndahiropacific.vercel.app"
+              href={profile.website}
               target="_blank"
               rel="noreferrer"
               className="p-3 rounded-full border border-border bg-card/50 hover:border-primary hover:text-primary transition-smooth"
