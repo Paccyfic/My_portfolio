@@ -1,37 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 
-const projects = [
-  {
-    title: "Production Fintech Mobile App",
-    description:
-      "Cross-platform mobile app for secure financial transactions. 50K+ active users, 4.5+ rating, end-to-end encryption, PCI-DSS compliant payments.",
-    tags: ["Flutter", "Dart", "Firebase", "OAuth 2.0"],
-    link: "https://play.google.com/store/apps/details?id=com.hexakomb.nokanda&hl=en",
-  },
-  {
-    title: "Muse of Research",
-    description:
-      "AI agent helping users discover scholarly articles across X, Telegram, and Discord using the Eliza framework.",
-    tags: ["Python", "FastAPI", "PostgreSQL", "Eliza"],
-    link: "https://x.com/MuseofResearch",
-  },
-  {
-    title: "Enterprise Web Platform",
-    description:
-      "Scalable web app with role-based access control and real-time WebSocket features. Cut load times by 50% via query optimization.",
-    tags: ["React", "Node.js", "WebSockets", "CI/CD"],
-    link: "https://app.isokko.com/",
-  },
-  {
-    title: "RDB URS",
-    description:
-      "Microservices platform for the Rwanda Development Board. React frontend, Spring Boot backend, with Python and Bash data migration scripts.",
-    tags: ["React", "Spring Boot", "Microservices", "SQL"],
-    link: "https://urs.rdb.rw/",
-  },
-];
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 export const Projects = () => {
+  const { projects } = useSiteContent();
+
   return (
     <section id="projects" className="py-24 bg-gradient-subtle relative">
       <div className="container mx-auto px-6 max-w-6xl">
@@ -50,8 +23,10 @@ export const Projects = () => {
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((p) => (
             <a
-              key={p.title}
+              key={p.id}
               href={p.link}
+              target="_blank"
+              rel="noreferrer"
               className="group p-8 rounded-2xl border border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:-translate-y-1 transition-smooth shadow-card relative overflow-hidden"
             >
               <div className="absolute top-6 right-6 w-10 h-10 rounded-full border border-border bg-secondary flex items-center justify-center group-hover:bg-gradient-primary group-hover:border-primary transition-smooth">
