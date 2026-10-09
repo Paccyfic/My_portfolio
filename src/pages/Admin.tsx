@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { AdminLogin } from "@/components/portfolio/AdminLogin";
-import { AdminInbox } from "@/components/portfolio/AdminInbox";
+import { AdminDashboard } from "@/components/portfolio/AdminDashboard";
 
 const Admin = () => {
   const [session, setSession] = useState<boolean | null>(null);
@@ -32,7 +32,7 @@ const Admin = () => {
     return <AdminLogin onSuccess={() => setSession(true)} />;
   }
 
-  return <AdminInbox onLogout={() => setSession(false)} />;
+  return <AdminDashboard onLogout={() => setSession(false)} />;
 };
 
 export default Admin;
