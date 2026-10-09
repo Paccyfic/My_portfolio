@@ -1,65 +1,9 @@
-const experience = [
-  {
-    role: "Full-Stack Developer",
-    company: "WRS Health",
-    period: "Sept 2025 — Present",
-    location: "Goshen, New York",
-    points: [
-      "Revamping the flagship EHR platform from PHP 5.0 to React 19 with a micro-frontend architecture.",
-      "Lead sprint planning, reviews, and ticket management for the frontend team.",
-    ],
-  },
-  {
-    role: "Software Engineering Contractor",
-    company: "Invisible Technologies Inc.",
-    period: "June 2025 — Oct 2025",
-    points: [
-      "Built data pipelines handling 100+ records daily with 99%+ accuracy.",
-      "Reduced manual processing time by 35% with Python and TypeScript automation.",
-    ],
-  },
-  {
-    role: "Senior Mobile Developer",
-    company: "Andela",
-    period: "Jan 2024 — Aug 2025",
-    points: [
-      "Shipped React, React Native and Flutter apps serving 100K+ MAUs.",
-      "Optimized backend APIs (Node.js, Django, GraphQL), cutting response times by 45%.",
-      "Reached 90%+ test coverage with comprehensive unit and integration testing.",
-    ],
-  },
-  {
-    role: "Lead Flutter Developer",
-    company: "HexaKomb Ltd",
-    period: "June 2024 — Feb 2025",
-    points: [
-      "Led a fintech app to 50K+ downloads and 4.5+ store rating.",
-      "Reduced startup time from 4.5s to 1.8s; integrated OAuth 2.0 and biometric auth.",
-    ],
-  },
-  {
-    role: "Software Developer",
-    company: "QT Global Software",
-    period: "Oct 2023 — Apr 2024",
-    location: "Kigali, Rwanda",
-    points: [
-      "Re-engineered the URS frontend into a micro-frontend architecture.",
-      "Reduced service request delivery times by ~35%.",
-    ],
-  },
-  {
-    role: "Full Stack Developer",
-    company: "Rwanda Space Agency",
-    period: "Dec 2021 — Jul 2023",
-    location: "Kigali, Rwanda",
-    points: [
-      "Built a data collection platform saving institutions $30K+/year.",
-      "Integrated GIS services across five government platforms.",
-    ],
-  },
-];
+import { ExternalLink } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 export const Experience = () => {
+  const { experience } = useSiteContent();
+
   return (
     <section id="experience" className="py-24 relative">
       <div className="container mx-auto px-6 max-w-4xl">
@@ -78,7 +22,7 @@ export const Experience = () => {
           <div className="space-y-12">
             {experience.map((job, i) => (
               <div
-                key={job.company + job.period}
+                key={job.id}
                 className={`relative flex md:items-center ${
                   i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
@@ -106,6 +50,21 @@ export const Experience = () => {
                         </li>
                       ))}
                     </ul>
+                    {job.links && job.links.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {job.links.map((l) => (
+                          <a
+                            key={l.url}
+                            href={l.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1 text-xs rounded-md border border-border bg-secondary text-secondary-foreground hover:border-primary hover:text-primary transition-smooth"
+                          >
+                            {l.label} <ExternalLink size={11} />
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
